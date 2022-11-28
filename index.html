@@ -28,8 +28,7 @@
                 <p>體重:
                 <input id="txbWeight">
                 </p>
-                <h1>答案等於<span id="num"></span></h1>
-                <button type="button" onclick="cal()">計算</button>
+                <p>---><button id='countId'>計算</button>，一共是<em id='BMI'></em>元。</p>
             </div>
         </div>
     </div>
@@ -39,11 +38,11 @@
 <script>
 
 
-    function cal() {
+    document.getElementById('countId').onclick = function cal() {
         //取得用戶輸入的參數
         var h = parseInt(document.getElementById('txbHeight').value);
         var w = parseInt(document.getElementById('txbWeight').value);
-        document.getElementById("num").innerHTML = 100 * 100 * w / (h * h);
+        document.getElementById("BMI").innerHTML = 100 * 100 * w / (h * h);
     }
     
 </script>
