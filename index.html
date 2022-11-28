@@ -12,6 +12,24 @@
     <script src="Scripts/isRockFx.js"></script>
 </head>
 <body>
+    <div id="Odiv" onclick="show()">点击0次</div>
+    <script>
+        var time=0;        
+        function show(){
+            if(time%2==0){
+
+                Odiv.style.background="pink";
+                console.log(time);
+                time++;
+            }else{
+                
+                Odiv.style.background="yellow";
+                console.log(time);
+                time++;
+            }
+             document.getElementById('Odiv').innerHTML = "点击"+time+"次";    
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (flag == 0) {
