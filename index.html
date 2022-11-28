@@ -1,8 +1,3 @@
-<script>
-    var x = Math.random();
-    document.getElementById('random').innerHTML = x ;
-</script>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +19,10 @@
     </script>
 </head>
 <body>
+    <script>
+        var x = Math.random();
+        document.getElementById('random').innerHTML = x ;
+    </script>
     <div class="row" style="margin:10px">
         <div class="col-md-12">
             <div class="form-group">
@@ -33,8 +32,8 @@
                 <p>體重:
                 <input id="txbWeight">
                 </p>
-                <p>---><button id='countId'>計算</button>, BMI = <em id='BMI'></em>元。</p>
-                <p>x =  <em id="random"></em>.</p>
+                <p>---><button id='countId'>計算</button>BMI = <em id='BMI'></em>~</p>
+                <p>x=<em id="random"></em>.</p>
             </div>
         </div>
     </div>
