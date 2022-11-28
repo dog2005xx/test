@@ -27,6 +27,9 @@
                 體重:
                 <input id="txbWeight" class="form-control" placeholder="請輸入體重" />
                 <br />
+                <h1>2*3=<span id="num"></span></h1>
+
+                <button type="button" onclick="cal()">計算</button>
                 <button class="btn btn-primary" id="ButtonCal">計算</button>
             </div>
         </div>
@@ -34,3 +37,11 @@
 </body>
 </html>
 
+<script>
+
+
+    function cal() {
+        document.getElementById("num").innerHTML = 2*3;
+    }
+    
+</script>
