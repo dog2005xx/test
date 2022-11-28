@@ -1,6 +1,5 @@
 <script> 
     var x = 0;
-    var flag = 0;
 </script>
 <!DOCTYPE html>
 <html>
@@ -12,25 +11,8 @@
     <script src="Scripts/isRockFx.js"></script>
 </head>
 <body>
-    <div id="Odiv" onclick="show()">点击0次</div>
     <script>
-        var time=0;        
-        function show(){
-            if(time%2==0){
-
-                Odiv.style.background="pink";
-                console.log(time);
-                time++;
-            }else{
-                
-                Odiv.style.background="yellow";
-                console.log(time);
-                time++;
-            }
-             document.getElementById('Odiv').innerHTML = "点击"+time+"次";    
-        }
-    </script>
-    <script>
+        var flag = 0;
         document.addEventListener('DOMContentLoaded', function() {
             if (flag == 0) {
                 x = Math.random();
@@ -49,7 +31,7 @@
                 <input id="txbWeight">
                 </p>
                 <p>---><button id='countId'>計算</button>BMI = <em id='BMI'></em>~</p>
-                <p>time =<em id='Odiv'></em>.</p>
+                <p>time =<em id='random'></em>.</p>
             </div>
         </div>
     </div>
