@@ -27,10 +27,7 @@
                 體重:
                 <input id="txbWeight" class="form-control" placeholder="請輸入體重" />
                 <br />
-                <button class="btn btn-primary" id="ButtonCal">計算</button>
-            </div>
-            <div class="add">
-                <h1>2*3=<span id="num"></span></h1>
+                <h1>答案等於<span id="num"></span></h1>
                 <button type="button" onclick="cal()">計算</button>
             </div>
         </div>
@@ -42,7 +39,9 @@
 
 
     function cal() {
-        document.getElementById("num").innerHTML = 2*3;
+        //取得用戶輸入的參數
+        var para = { 'height': $('#txbHeight').val(), 'weight': $('#txbWeight').val() };
+        document.getElementById("num").innerHTML = 100 * 100 * para.weight / (para.height * para.height);
     }
     
 </script>
