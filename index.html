@@ -12,7 +12,13 @@
                 function () {
                     //取得用戶輸入的參數
                     var para = { 'height': $('#txbHeight').val(), 'weight': $('#txbWeight').val() };
-                    alert( 100 * 100 * para.weight / (para.height * para.height) );
+                    //呼叫API
+                    ExecuteAPI('Example', 'BMI', para,
+			//呼叫WebAPI成功時運行的Call Back Function
+                        function (result) {
+                            alert(result.Data);
+                        }
+                        );
                 }
                 );
         });
@@ -33,4 +39,3 @@
     </div>
 </body>
 </html>
-
