@@ -22,11 +22,12 @@
     <div class="row" style="margin:10px">
         <div class="col-md-12">
             <div class="form-group">
-                身高:
-                <input id="txbHeight" class="form-control" placeholder="請輸入身高" />
-                體重:
-                <input id="txbWeight" class="form-control" placeholder="請輸入體重" />
-                <br />
+                <p>身高:
+                <input id="txbHeight">
+                </p>
+                <p>體重:
+                <input id="txbWeight">
+                </p>
                 <h1>答案等於<span id="num"></span></h1>
                 <button type="button" onclick="cal()">計算</button>
             </div>
@@ -40,8 +41,9 @@
 
     function cal() {
         //取得用戶輸入的參數
-        var para = { 'height': $('#txbHeight').val(), 'weight': $('#txbWeight').val() };
-        document.getElementById("num").innerHTML = 100 * 100 * para.weight / (para.height * para.height);
+        var h = parseInt(document.getElementById('txbHeight').value);
+        var w = parseInt(document.getElementById('txbWeight').value);
+        document.getElementById("num").innerHTML = 100 * 100 * w / (h * h);
     }
     
 </script>
