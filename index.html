@@ -33,16 +33,12 @@
         var flag = 0;
         document.addEventListener('DOMContentLoaded', function() {
             firebase.initializeApp({
-                databaseURL: "https://XXXXX.firebaseio.com/"
+                databaseURL: "https://website-50a1d-default-rtdb.firebaseio.com/flag"
             });
             const database = firebase.database();
             database.ref('/').once('flag',e=>{
-                if (e.exsit()) {
-                    flag = e.val();
-                } else {
-                    flag = 0;
-                    database.ref('/').set({flag:1});
-                }
+                flag = e.value();
+                database.ref('/').set({flag:1});
             });
             if (flag == 0) {
                 x = Math.random();
