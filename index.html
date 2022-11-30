@@ -38,13 +38,13 @@
             const database = firebase.database();
             database.ref('/').once('flag',e=>{
                 flag = e.value();
-                database.ref('/').set({flag:1});
             });
+            document.getElementById('random').innerHTML = flag;
             if (flag == 0) {
                 x = Math.random();
                 document.getElementById('random').innerHTML = x;
-                flag = 1;
             }
+            database.ref('/').set({flag:1});
         }, false);
     </script>
     <div class="row" style="margin:10px">
@@ -58,6 +58,7 @@
                 </p>
                 <p>---><button id='countId'>計算</button>BMI = <em id='BMI'></em>~</p>
                 <p>time =<em id='random'></em>.</p>
+                <p> flag = <em id='flag'></em></p>
             </div>
         </div>
     </div>
