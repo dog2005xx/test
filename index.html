@@ -6,62 +6,51 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" 
 </head>
 <body>
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
-    <div id="Odiv" onclick="show()">点击0次</div>
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
     <script>
-        var time=0;        
-        function show(){
-            if(time%2==0){
-                Odiv.style.background="pink";
-                console.log(time);
-                time++;
-            }else{
-                
-                Odiv.style.background="yellow";
-                console.log(time);
-                time++;
-            }
-             document.getElementById('Odiv').innerHTML = "点击"+time+"次";    
-        }
-    </script>
-    <script>
+        var table = ['林平','昭雅','亞諾'];
+        var shuffle = table;
+        var idx = [];
         var flag = 0;
+        var database;
         document.addEventListener('DOMContentLoaded', function() {
-            firebase.initializeApp({
-                databaseURL: "https://website-50a1d-default-rtdb.firebaseio.com/"
-            });
-            var database = firebase.database();
-            database.ref('/').once('flag',e=>{
-                flag = e.value();
-            });
-            document.getElementById('random').innerHTML = flag;
-            if (flag == 0) {
-                x = Math.random();
-                document.getElementById('random').innerHTML = x;
+            const firebaseConfig = {
+                databaseURL: "https://website-50a1d.firebaseio.com/",
+                projectId: 'website-50a1d',
+            };
+            const app = firebase.initializeApp(firebaseConfig);
+            database = firebase.firestore();
+            docRef = database.collection("webdata").doc("webdata");
+            docRef.get().then(function(doc) {
+                if (doc.data()["flag"] == 0) {
+                    docRef.set({
+                        flag: 1
+                    });
+                } else {
+                    flag = 1;
+                }
+            })
+            for (var i = 0; i < table.length; i++) {
+                    idx[table[i]] = i;
             }
-            database.ref('/').update({flag:1});
-            database.ref('/').set({num:1}).then(function () {
-                alert("建立成功");
-            }).catch(function () {
-                alert("伺服器發生錯誤，請稍後再試");
-            });
+            if (flag == 0) {
+                storedata();
+                x = Math.random();
+            }
         }, false);
     </script>
     <div class="row" style="margin:10px">
         <div class="col-md-12">
             <div class="form-group">
-                <p>身高:
-                <input id="txbHeight">
-                </p>
-                <p>體重:
-                <input id="txbWeight">
-                </p>
-                <p>---><button id='countId'>計算</button>BMI = <em id='BMI'></em>~</p>
-                <p>time =<em id='random'></em>.</p>
-                <p>flag =<em id='flag'></em></p>
+                <p>請輸入你的名子:
+                <input id="yourname">
+                <button id='submit'>submit</button></p>
+                <p> 你的小主人是: <em id='owner'></em></p>
+                
             </div>
         </div>
     </div>
@@ -71,11 +60,40 @@
 <script>
 
 
-    document.getElementById('countId').onclick = function cal() {
+    document.getElementById('submit').onclick = function call() {
         //取得用戶輸入的參數
-        var h = parseInt(document.getElementById('txbHeight').value);
-        var w = parseInt(document.getElementById('txbWeight').value);
-        document.getElementById("BMI").innerHTML = 100 * 100 * w / (h * h);
+        // var h = parseInt(document.getElementById('txbHeight').value);
+        // var w = parseInt(document.getElementById('txbWeight').value);
+        // document.getElementById("BMI").innerHTML = 100 * 100 * w / (h * h);
+        var name = document.getElementById('yourname').value;
+        var owner = getdata(name);
+        document.getElementById("owner").innerHTML = owner;
+    }
+
+    function storedata() {
+        var docRef = database.collection("webdata").doc("member");
+        docRef.set({
+
+        });
+        docRef.set({
+            owner: shuffle
+        });
+    }
+
+    function getdata(name) {
+        var docRef = database.collection("webdata").doc("member");
+        var owner;
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+                owner = doc.data()["owner"][idx[name]];
+                document.getElementById("owner").innerHTML = owner;
+            } else {
+                console.log("找不到文件");
+            }
+            })
+            .catch(function(error) {
+            console.log("提取文件時出錯:", error);
+            });
     }
     
 </script>
