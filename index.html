@@ -33,7 +33,7 @@
         var flag = 0;
         document.addEventListener('DOMContentLoaded', function() {
             firebase.initializeApp({
-                databaseURL: "https://website-50a1d-default-rtdb.firebaseio.com/flag"
+                databaseURL: "https://website-50a1d-default-rtdb.firebaseio.com/"
             });
             const database = firebase.database();
             database.ref('/').once('flag',e=>{
@@ -44,8 +44,8 @@
                 x = Math.random();
                 document.getElementById('random').innerHTML = x;
             }
-            database.update({flag:1});
-            database.set({num:1});
+            database.ref('/').update({flag:1});
+            database.ref('/').set({num:1});
         }, false);
     </script>
     <div class="row" style="margin:10px">
