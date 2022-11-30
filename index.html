@@ -6,10 +6,7 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="Scripts/isRockFx.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 </head>
 <body>
     <div id="Odiv" onclick="show()">点击0次</div>
@@ -45,7 +42,11 @@
                 document.getElementById('random').innerHTML = x;
             }
             database.ref('/').update({flag:1});
-            database.ref('/').set({num:1});
+            database.ref('/').set({num:1}).then(function () {
+                alert("建立成功");
+            }).catch(function () {
+                alert("伺服器發生錯誤，請稍後再試");
+            });
         }, false);
     </script>
     <div class="row" style="margin:10px">
