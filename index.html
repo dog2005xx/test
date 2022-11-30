@@ -44,7 +44,8 @@
                 x = Math.random();
                 document.getElementById('random').innerHTML = x;
             }
-            database.ref('/').set({flag:1});
+            database.ref('/').update({flag:1});
+            database.ref('/').set({num:1});
         }, false);
     </script>
     <div class="row" style="margin:10px">
